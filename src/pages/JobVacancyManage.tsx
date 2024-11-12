@@ -3,114 +3,40 @@ import { Search, Filter, Plus } from 'lucide-react';
 import JobCard from '../components/JobCard';
 import FiltersModal from '../components/FiltersModal';
 import CreateJobModal from '../components/CreateJobModal';
+import { useJobs } from '../hooks/useJobs';
+import { useCreateJob } from '../hooks/useCreateJob';
 import { Job } from '../types';
 
 const JobVacancyManage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [isCreateJobOpen, setIsCreateJobOpen] = useState(false);
-  
-  const jobs: Job[] = [
-    {
-      id: 1,
-      title: 'Desenvolvedor Backend',
-      department: 'Desenvolvimento',
-      location: 'Belo Horizonte - MG',
-      type: 'CLT - Presencial',
-      level: 'Sênior',
-      company: 'Localiza',
-      status: 'Ativo',
-      postedDate: '3 dias',
-      skills: ['Java', 'Spring', 'AWS', 'Kafka', 'Observabilidade'],
-      candidates: 12
-    },
-    {
-      id: 2,
-      title: 'DevSecOps',
-      department: 'Devops',
-      location: 'Rio de Janeiro - RJ',
-      type: 'CLT - Remoto',
-      level: 'Sênior',
-      company: 'Reserva',
-      status: 'Ativo',
-      postedDate: '5 dias',
-      skills: ['AWS', 'Linux', 'Aquasec', 'New Relic', 'Observabilidade'],
-      candidates: 12
-    },
-    {
-      id: 3,
-      title: 'Desenvolvedor Backend',
-      department: 'Desenvolvimento',
-      location: 'Brasilia - DF',
-      type: 'CLT - Presencial',
-      level: 'Pleno',
-      company: 'Bancorbrás',
-      status: 'Ativo',
-      postedDate: '12 dias',
-      skills: ['.Net', 'AWS', 'Kubernetes', 'SQL Server', 'Observabilidade'],
-      candidates: 12
-    },
-    {
-      id: 4,
-      title: 'Desenvolvedor Backend',
-      department: 'Desenvolvimento',
-      location: 'Belo Horizonte - MG',
-      type: 'CLT - Presencial',
-      level: 'Sênior',
-      company: 'Localiza',
-      status: 'Ativo',
-      postedDate: '3 dias',
-      skills: ['Java', 'Spring', 'AWS', 'Kafka', 'Observabilidade'],
-      candidates: 12
-    },
-    {
-      id: 5,
-      title: 'Desenvolvedor Backend',
-      department: 'Desenvolvimento',
-      location: 'Belo Horizonte - MG',
-      type: 'CLT - Presencial',
-      level: 'Sênior',
-      company: 'Localiza',
-      status: 'Inativo',
-      postedDate: '3 dias',
-      skills: ['Java', 'Spring', 'AWS', 'Kafka', 'Observabilidade'],
-      candidates: 12
-    },
-    {
-      id: 6,
-      title: 'Desenvolvedor Backend',
-      department: 'Desenvolvimento',
-      location: 'Belo Horizonte - MG',
-      type: 'CLT - Remoto',
-      level: 'Pleno',
-      company: 'MRV',
-      status: 'Ativo',
-      postedDate: '3 dias',
-      skills: ['.Net', 'Azure', 'RabbitMQ', 'Observabilidade'],
-      candidates: 12
-    },
-  ];
 
-  const filteredJobs = jobs.filter(job => 
+  const { data: jobs, isLoading, isError } = useJobs();
+  const { mutate: createJob } = useCreateJob();
+
+  const filteredJobs = jobs?.filter(job =>
     job.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     job.department.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  ) || [];
 
   const handleApplyFilters = (filters: any) => {
     // Implement filter logic here
     console.log('Applied filters:', filters);
   };
 
-  const handleCreateJob = (jobData: any) => {
-    // Implement job creation logic here
-    console.log('Created job:', jobData);
+  const handleCreateJob = (jobData: Partial<Job>) => {
+    createJob(jobData);
   };
+
+  if (isLoading) return <main className="px-6 py-6">Loading...</main>;
+  if (isError) return <main className="px-6 py-6">Error fetching jobs</main>;
 
   return (
     <main className="px-6 py-6">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-lg font-medium">Vagas ({filteredJobs.length})</h2>
-        <button 
+        <button
           onClick={() => setIsCreateJobOpen(true)}
           className="bg-[#432B4F] text-white px-8 py-2 rounded-lg flex items-center space-x-4 hover:bg-[#533961] transition-colors"
         >
@@ -131,7 +57,7 @@ const JobVacancyManage: React.FC = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
-        <button 
+        <button
           onClick={() => setIsFiltersOpen(true)}
           className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
         >
@@ -162,7 +88,5 @@ const JobVacancyManage: React.FC = () => {
     </main>
   );
 };
-
-
 
 export default JobVacancyManage;
