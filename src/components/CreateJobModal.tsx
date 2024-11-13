@@ -2,6 +2,9 @@ import type { Job } from '@/types';
 import { ArrowLeft } from 'lucide-react';
 import type React from 'react';
 import { useState } from 'react';
+import type { SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+
 
 interface CreateJobModalProps {
   isOpen: boolean;
@@ -15,36 +18,16 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
   onCreateJob,
 }) => {
   const [activeTab, setActiveTab] = useState('info');
-  const [formData, setFormData] = useState({
-    id: 0,
-    title: '',
-    department: '',
-    location: '',
-    type: '',
-    level: '',
-    company: '',
-    status: '',
-    postedDate: '',
-    skills: [] as Array<string>,
-    candidates: 0,
-  });
+  const { register, handleSubmit, formState: { errors } } = useForm<Job>();
+
+  const onSubmit: SubmitHandler<Job> = (data) => {
+    onCreateJob(data);
+    onClose();
+  };
 
   if (!isOpen) {
     return null;
   }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onCreateJob(formData);
-    onClose();
-  };
-
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLSelectElement | HTMLTextAreaElement>,
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50">
@@ -71,22 +54,20 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
             <nav className="flex space-x-8">
               <button
                 type="button"
-                className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                  activeTab === 'info'
-                    ? 'border-[#432B4F] text-[#432B4F]'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                }`}
+                className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === 'info'
+                  ? 'border-[#432B4F] text-[#432B4F]'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`}
                 onClick={() => setActiveTab('info')}
               >
                 Informações da vaga
               </button>
               <button
                 type="button"
-                className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                  activeTab === 'skills'
-                    ? 'border-[#432B4F] text-[#432B4F]'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                }`}
+                className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === 'skills'
+                  ? 'border-[#432B4F] text-[#432B4F]'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`}
                 onClick={() => setActiveTab('skills')}
               >
                 Competências
@@ -96,7 +77,7 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="max-w-5xl mx-auto px-4 py-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="max-w-5xl mx-auto px-4 py-6">
           {activeTab === 'info' && (
             <div className="grid grid-cols-2 gap-6">
               <div>
@@ -108,9 +89,7 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
                 </label>
                 <select
                   id="departamento_id"
-                  name="department"
-                  value={formData.department}
-                  onChange={handleInputChange}
+                  {...register('department', { required: 'Department is required' })}
                   className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                 >
                   <option value="">Selecione</option>
@@ -118,6 +97,7 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
                   <option value="design">Design</option>
                   <option value="produto">Produto</option>
                 </select>
+                {errors.department && <p className="text-red-500 text-sm">{errors.department.message}</p>}
               </div>
 
               <div>
@@ -129,9 +109,7 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
                 </label>
                 <select
                   id="vaga_id"
-                  name="title"
-                  value={formData.title}
-                  onChange={handleInputChange}
+                  {...register('title', { required: 'Title is required' })}
                   className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                 >
                   <option value="">Selecione</option>
@@ -139,6 +117,7 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
                   <option value="frontend">Desenvolvedor Frontend</option>
                   <option value="fullstack">Desenvolvedor Fullstack</option>
                 </select>
+                {errors.title && <p className="text-red-500 text-sm">{errors.title.message}</p>}
               </div>
 
               <div>
@@ -150,9 +129,7 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
                 </label>
                 <select
                   id="senioridade_id"
-                  name="seniority"
-                  value={formData.level}
-                  onChange={handleInputChange}
+                  {...register('level', { required: 'Level is required' })}
                   className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                 >
                   <option value="">Selecione</option>
@@ -160,6 +137,7 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
                   <option value="pleno">Pleno</option>
                   <option value="senior">Sênior</option>
                 </select>
+                {errors.level && <p className="text-red-500 text-sm">{errors.level.message}</p>}
               </div>
 
               <div>
@@ -171,9 +149,7 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
                 </label>
                 <select
                   id="location_id"
-                  name="location"
-                  value={formData.location}
-                  onChange={handleInputChange}
+                  {...register('location', { required: 'Location is required' })}
                   className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                 >
                   <option value="">Selecione</option>
@@ -181,6 +157,7 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
                   <option value="sp">São Paulo - SP</option>
                   <option value="rj">Rio de Janeiro - RJ</option>
                 </select>
+                {errors.location && <p className="text-red-500 text-sm">{errors.location.message}</p>}
               </div>
 
               <div>
@@ -192,15 +169,14 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
                 </label>
                 <select
                   id="regime_id"
-                  name="contractType"
-                  value={formData.type}
-                  onChange={handleInputChange}
+                  {...register('type', { required: 'Type is required' })}
                   className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                 >
                   <option value="">Selecione</option>
                   <option value="clt">CLT</option>
                   <option value="pj">PJ</option>
                 </select>
+                {errors.type && <p className="text-red-500 text-sm">{errors.type.message}</p>}
               </div>
 
               <div>
@@ -212,9 +188,7 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
                 </label>
                 <select
                   id="modelo_trabalho_id"
-                  name="workModel"
-                  value={formData.type}
-                  onChange={handleInputChange}
+                  {...register('type', { required: 'Type is required' })}
                   className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                 >
                   <option value="">Selecione</option>
@@ -222,6 +196,7 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
                   <option value="hibrido">Híbrido</option>
                   <option value="remoto">Remoto</option>
                 </select>
+                {errors.type && <p className="text-red-500 text-sm">{errors.type.message}</p>}
               </div>
             </div>
           )}
