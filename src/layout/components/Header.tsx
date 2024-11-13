@@ -24,7 +24,7 @@ const Header = () => {
             <h1 className="text-2xl font-semibold">Gestão de vagas</h1>
           </div>
         </div>
-        {user &&
+        {user && (
           <div className="basis-1/3">
             <div className="flex px-5 justify-end">
               <button
@@ -61,8 +61,7 @@ const Header = () => {
               </div>
             </div>
           </div>
-        }
-
+        )}
       </div>
     </header>
   );
