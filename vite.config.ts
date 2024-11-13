@@ -1,8 +1,9 @@
+import MillionLint from '@million/lint';
 import react from '@vitejs/plugin-react';
-import million from 'million/compiler';
 import { visualizer } from 'rollup-plugin-visualizer';
 import type { PluginOption } from 'vite';
 import { defineConfig } from 'vite';
+import type { Plugin } from 'vite';
 import checker from 'vite-plugin-checker';
 import type { VitePWAOptions } from 'vite-plugin-pwa';
 import { VitePWA } from 'vite-plugin-pwa';
@@ -33,20 +34,16 @@ const pwaOptions: Partial<VitePWAOptions> = {
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    million.vite({ auto: true }),
+    MillionLint.vite({
+      enabled: true,
+    }),
     react(),
     checker({
       typescript: true,
       biome: true,
     }),
-    tsconfigPaths(),
+    tsconfigPaths() as Plugin,
     visualizer({ template: 'sunburst' }) as unknown as PluginOption,
     VitePWA(pwaOptions),
   ],
-  server: {
-    open: true,
-  },
-  optimizeDeps: {
-    exclude: ['lucide-react'],
-  },
 });
