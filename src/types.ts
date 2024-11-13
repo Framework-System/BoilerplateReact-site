@@ -8,6 +8,6 @@ export interface Job {
   company: string;
   status: string;
   postedDate: string;
-  skills: string[];
+  skills: Array<string>;
   candidates: number;
 }

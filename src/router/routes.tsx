@@ -1,9 +1,7 @@
-import React from 'react';
 import type { PathRouteProps } from 'react-router-dom';
-
-const Home = React.lazy(() => import('../pages/Home'));
-const JobVacancyManage = React.lazy(() => import('../pages/JobVacancyManage'));
-const Interviews = React.lazy(() => import('../pages/Interviews'));
+import { Home } from '@/pages/Home';
+import { JobVacancyManage } from '@/pages/JobVacancyManage';
+import { Interviews } from '@/pages/Interviews';
 
 export const routes: Array<PathRouteProps> = [
   {

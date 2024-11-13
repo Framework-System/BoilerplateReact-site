@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import { X, ArrowLeft } from 'lucide-react';
+import type React from 'react';
+import { useState } from 'react';
+import { ArrowLeft } from 'lucide-react';
+import type { Job } from '@/types';
 
 interface CreateJobModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onCreateJob: (jobData: any) => void;
+  onCreateJob: (jobData: Job) => void;
 }
 
 const CreateJobModal: React.FC<CreateJobModalProps> = ({
@@ -14,17 +16,22 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
 }) => {
   const [activeTab, setActiveTab] = useState('info');
   const [formData, setFormData] = useState({
-    department: '',
-    title: '',
-    seniority: '',
-    location: '',
-    contractType: '',
-    workModel: '',
-    notes: '',
-    skills: [] as string[],
+    id: 0,
+    title: "",
+    department: "",
+    location: "",
+    type: "",
+    level: "",
+    company: "",
+    status: "",
+    postedDate: "",
+    skills: [] as Array<string>,
+    candidates: 0,
   });
 
-  if (!isOpen) return null;
+  if (!isOpen) {
+    return null;
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,6 +52,7 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button
+                type="button"
                 onClick={onClose}
                 className="p-2 hover:bg-[#533961] rounded-full"
               >
@@ -60,21 +68,21 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
           <div className="max-w-5xl mx-auto px-4">
             <nav className="flex space-x-8">
               <button
-                className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                  activeTab === 'info'
-                    ? 'border-[#432B4F] text-[#432B4F]'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                }`}
+                type="button"
+                className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === 'info'
+                  ? 'border-[#432B4F] text-[#432B4F]'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`}
                 onClick={() => setActiveTab('info')}
               >
                 Informações da vaga
               </button>
               <button
-                className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                  activeTab === 'skills'
-                    ? 'border-[#432B4F] text-[#432B4F]'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                }`}
+                type="button"
+                className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === 'skills'
+                  ? 'border-[#432B4F] text-[#432B4F]'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`}
                 onClick={() => setActiveTab('skills')}
               >
                 Competências
@@ -88,10 +96,11 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
           {activeTab === 'info' && (
             <div className="grid grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="departamento_id" className="block text-sm font-medium text-gray-700 mb-2">
                   Departamento
                 </label>
                 <select
+                  id="departamento_id"
                   name="department"
                   value={formData.department}
                   onChange={handleInputChange}
@@ -105,10 +114,11 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="vaga_id" className="block text-sm font-medium text-gray-700 mb-2">
                   Vaga
                 </label>
                 <select
+                  id="vaga_id"
                   name="title"
                   value={formData.title}
                   onChange={handleInputChange}
@@ -122,12 +132,13 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="senioridade_id" className="block text-sm font-medium text-gray-700 mb-2">
                   Senioridade
                 </label>
                 <select
+                  id="senioridade_id"
                   name="seniority"
-                  value={formData.seniority}
+                  value={formData.level}
                   onChange={handleInputChange}
                   className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                 >
@@ -139,10 +150,11 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="location_id" className="block text-sm font-medium text-gray-700 mb-2">
                   Localização
                 </label>
                 <select
+                  id="location_id"
                   name="location"
                   value={formData.location}
                   onChange={handleInputChange}
@@ -156,12 +168,13 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="regime_id" className="block text-sm font-medium text-gray-700 mb-2">
                   Regime do Contrato
                 </label>
                 <select
+                  id="regime_id"
                   name="contractType"
-                  value={formData.contractType}
+                  value={formData.type}
                   onChange={handleInputChange}
                   className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                 >
@@ -172,12 +185,13 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="modelo_trabalho_id" className="block text-sm font-medium text-gray-700 mb-2">
                   Modelo de trabalho
                 </label>
                 <select
+                  id="modelo_trabalho_id"
                   name="workModel"
-                  value={formData.workModel}
+                  value={formData.type}
                   onChange={handleInputChange}
                   className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                 >
@@ -186,21 +200,6 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
                   <option value="hibrido">Híbrido</option>
                   <option value="remoto">Remoto</option>
                 </select>
-              </div>
-
-              <div className="col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Observações
-                </label>
-                <textarea
-                  name="notes"
-                  value={formData.notes}
-                  onChange={handleInputChange}
-                  rows={4}
-                  className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  placeholder="Digite"
-                />
-                <p className="mt-1 text-sm text-gray-500">Opcional</p>
               </div>
             </div>
           )}
@@ -236,4 +235,4 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
   );
 };
 
-export default CreateJobModal;
+export { CreateJobModal };

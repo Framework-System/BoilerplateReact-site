@@ -1,9 +1,10 @@
-import { ReactNode, useEffect } from 'react';
+import type { ReactNode } from 'react';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Header } from './components/header';
-import { Meta } from './components/meta';
-import { Sidebar } from './components/sidebar';
-import { useSidebar } from '../contexts/SidebarContext';
+import { Header } from './components/Header';
+import { Meta } from './components/Meta';
+import { Sidebar } from './components/Sidebar';
+import { useSidebar } from '@/contexts/SidebarContext';
 
 type LayoutProps = {
   children: ReactNode;

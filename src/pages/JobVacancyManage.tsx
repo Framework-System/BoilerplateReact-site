@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import { Search, Filter, Plus } from 'lucide-react';
-import JobCard from '../components/JobCard';
-import FiltersModal from '../components/FiltersModal';
-import CreateJobModal from '../components/CreateJobModal';
-import { useJobs } from '../hooks/useJobs';
-import { useCreateJob } from '../hooks/useCreateJob';
-import { Job } from '../types';
+import { JobCard } from '@/components/JobCard';
+import { FiltersModal } from '@/components/FiltersModal';
+import { CreateJobModal } from '@/components/CreateJobModal';
+import { useJobs } from '@/hooks/useJobs';
+import { useCreateJob } from '@/hooks/useCreateJob';
+import type { Job } from '@/types';
+import { log } from '@/logger';
 
 const JobVacancyManage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -20,23 +22,27 @@ const JobVacancyManage: React.FC = () => {
     job.department.toLowerCase().includes(searchQuery.toLowerCase())
   ) || [];
 
-  const handleApplyFilters = (filters: any) => {
-    // Implement filter logic here
-    console.log('Applied filters:', filters);
+  const handleApplyFilters = () => {
+    log.info('Filters applied:');
   };
 
   const handleCreateJob = (jobData: Partial<Job>) => {
     createJob(jobData);
   };
 
-  if (isLoading) return <main className="px-6 py-6">Loading...</main>;
-  if (isError) return <main className="px-6 py-6">Error fetching jobs</main>;
+  if (isLoading) {
+    return <main className="px-6 py-6">Loading...</main>
+  }
+  if (isError) {
+    return <main className="px-6 py-6">Error fetching jobs</main>
+  }
 
   return (
     <main className="px-6 py-6">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-lg font-medium">Vagas ({filteredJobs.length})</h2>
         <button
+          type="button"
           onClick={() => setIsCreateJobOpen(true)}
           className="bg-[#432B4F] text-white px-8 py-2 rounded-lg flex items-center space-x-4 hover:bg-[#533961] transition-colors"
         >
@@ -58,6 +64,7 @@ const JobVacancyManage: React.FC = () => {
           />
         </div>
         <button
+          type="button"
           onClick={() => setIsFiltersOpen(true)}
           className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
         >
@@ -89,4 +96,4 @@ const JobVacancyManage: React.FC = () => {
   );
 };
 
-export default JobVacancyManage;
+export { JobVacancyManage };

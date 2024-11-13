@@ -1,9 +1,9 @@
-import { SidebarProvider } from '../contexts/SidebarContext';
+import { SidebarProvider } from '@/contexts/SidebarContext';
 
 export function Provider(props: React.PropsWithChildren) {
   return (
     <SidebarProvider>
-        {props.children}
+      {props.children}
     </SidebarProvider>
   );
 }

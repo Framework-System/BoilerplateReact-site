@@ -5,13 +5,13 @@ import { Layout } from './layout';
 import { Routings } from './router/routings';
 
 const App = () => (
-    <Provider>
-      <Router>
-        <Layout>
-          <Routings />
-        </Layout>
-      </Router>
-    </Provider>
+  <Provider>
+    <Router>
+      <Layout>
+        <Routings />
+      </Layout>
+    </Router>
+  </Provider>
 );
 
-export default App;
+export { App };
