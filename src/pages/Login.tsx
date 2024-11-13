@@ -2,26 +2,32 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Lock, Mail } from 'lucide-react';
+import type { SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+
+
+type LoginFormInputs = {
+    email: string;
+    password: string;
+};
 
 export function Login() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const { login } = useAuth();
     const navigate = useNavigate();
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
+    const { register, handleSubmit, formState: { errors } } = useForm<LoginFormInputs>();
+
+    const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
         setError('');
         setIsLoading(true);
 
         try {
-            await login(email, password);
+            await login(data.email, data.password);
             navigate('/');
-            // biome-ignore lint/correctness/noUnusedVariables: <explanation>
-        } catch (err) {
-            setError('Invalid email or password');
+        } catch (_err) {
+            setError('Email ou senha inválidos');
         } finally {
             setIsLoading(false);
         }
@@ -42,7 +48,7 @@ export function Login() {
 
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-                    <form className="space-y-6" onSubmit={handleSubmit}>
+                    <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
                         {error && (
                             <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md text-sm">
                                 {error}
@@ -62,15 +68,13 @@ export function Login() {
                                 </div>
                                 <input
                                     id="email"
-                                    name="email"
                                     type="email"
                                     autoComplete="email"
-                                    required
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    {...register('email', { required: 'Email is required' })}
                                     className="appearance-none block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-purple-500 focus:border-purple-500"
                                     placeholder="Insira seu e-mail"
                                 />
+                                {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
                             </div>
                         </div>
 
@@ -87,15 +91,13 @@ export function Login() {
                                 </div>
                                 <input
                                     id="password"
-                                    name="password"
                                     type="password"
                                     autoComplete="current-password"
-                                    required
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
+                                    {...register('password', { required: 'Password is required' })}
                                     className="appearance-none block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-purple-500 focus:border-purple-500"
                                     placeholder="Digite sua senha"
                                 />
+                                {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
                             </div>
                         </div>
 
