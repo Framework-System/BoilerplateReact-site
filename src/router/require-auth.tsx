@@ -1,4 +1,5 @@
-import { Navigate } from 'react-router-dom';
+import { useAuth } from '@/contexts/AuthContext';
+import { Navigate, useLocation } from 'react-router-dom';
 
 type PrivateRouteProps = {
   children: React.ReactNode;
@@ -9,12 +10,12 @@ export const RequireAuth = ({
   children,
   redirectTo = '/login',
 }: PrivateRouteProps) => {
-  // add your own authentication logic here
-  const isAuthenticated = true;
+  const { isAuthenticated } = useAuth();
+  const location = useLocation();
 
-  return isAuthenticated ? (
-    (children as React.ReactElement)
-  ) : (
-    <Navigate to={redirectTo} />
-  );
+  if (!isAuthenticated) {
+    return <Navigate to={redirectTo} state={{ from: location }} replace />;
+  }
+
+  return children as React.ReactElement;
 };
