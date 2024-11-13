@@ -26,3 +26,20 @@ pnpm install
 pnpm dev
 ```
 A aplicação estará disponível em http://localhost:5173.
+
+### 🧰 Tecnologias Utilizadas
+* React: Biblioteca JavaScript para construção de interfaces de usuário.
+* TypeScript: Superset do JavaScript que adiciona tipagem estática.
+* Vite: Ferramenta de construção rápida para projetos web modernos.
+* React Router: Biblioteca para gerenciamento de rotas no React.
+* React Query: Biblioteca para gerenciamento de estado e cache de dados.
+* Tailwind CSS: Framework CSS utilitário para estilização rápida.
+
+## 📚 Documentação Adicional
+
+- [React Documentation](https://react.dev/learn)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs/)
+- [Vite Documentation](https://vitejs.dev/guide/)
+- [React Router Documentation](https://reactrouter.com/en/main)
+- [React Query Documentation](https://tanstack.com/query/latest/docs/)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
