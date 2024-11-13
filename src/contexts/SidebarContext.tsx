@@ -1,5 +1,5 @@
 import type { FC, ReactNode } from 'react';
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, memo } from 'react';
 
 interface SidebarContextType {
   isExpanded: boolean;
@@ -10,7 +10,7 @@ interface SidebarContextType {
 
 const SidebarContext = createContext<SidebarContextType | undefined>(undefined);
 
-export const SidebarProvider: FC<{ children: ReactNode }> = ({ children }) => {
+export const SidebarProvider: FC<{ children: ReactNode }> = memo(({ children }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [currentPath, setCurrentPath] = useState('/');
 
@@ -25,7 +25,7 @@ export const SidebarProvider: FC<{ children: ReactNode }> = ({ children }) => {
       {children}
     </SidebarContext.Provider>
   );
-};
+});
 
 export const useSidebar = () => {
   const context = useContext(SidebarContext);
