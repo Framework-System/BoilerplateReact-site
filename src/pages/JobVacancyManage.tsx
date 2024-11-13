@@ -1,13 +1,13 @@
+import { CreateJobModal } from '@/components/CreateJobModal';
+import { FiltersModal } from '@/components/FiltersModal';
+import { JobCard } from '@/components/JobCard';
+import { useCreateJob } from '@/hooks/useCreateJob';
+import { useJobs } from '@/hooks/useJobs';
+import { log } from '@/logger';
+import type { Job } from '@/types';
+import { Filter, Plus, Search } from 'lucide-react';
 import type React from 'react';
 import { useState } from 'react';
-import { Search, Filter, Plus } from 'lucide-react';
-import { JobCard } from '@/components/JobCard';
-import { FiltersModal } from '@/components/FiltersModal';
-import { CreateJobModal } from '@/components/CreateJobModal';
-import { useJobs } from '@/hooks/useJobs';
-import { useCreateJob } from '@/hooks/useCreateJob';
-import type { Job } from '@/types';
-import { log } from '@/logger';
 
 const JobVacancyManage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -17,10 +17,12 @@ const JobVacancyManage: React.FC = () => {
   const { data: jobs, isLoading, isError } = useJobs();
   const { mutate: createJob } = useCreateJob();
 
-  const filteredJobs = jobs?.filter(job =>
-    job.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    job.department.toLowerCase().includes(searchQuery.toLowerCase())
-  ) || [];
+  const filteredJobs =
+    jobs?.filter(
+      (job) =>
+        job.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        job.department.toLowerCase().includes(searchQuery.toLowerCase()),
+    ) || [];
 
   const handleApplyFilters = () => {
     log.info('Filters applied:');
@@ -31,10 +33,10 @@ const JobVacancyManage: React.FC = () => {
   };
 
   if (isLoading) {
-    return <main className="px-6 py-6">Loading...</main>
+    return <main className="px-6 py-6">Loading...</main>;
   }
   if (isError) {
-    return <main className="px-6 py-6">Error fetching jobs</main>
+    return <main className="px-6 py-6">Error fetching jobs</main>;
   }
 
   return (
@@ -75,7 +77,7 @@ const JobVacancyManage: React.FC = () => {
 
       {/* Job Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filteredJobs.map(job => (
+        {filteredJobs.map((job) => (
           <JobCard key={job.id} job={job} />
         ))}
       </div>

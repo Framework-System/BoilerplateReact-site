@@ -6,8 +6,17 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "serve": "vite preview",
+    "biome:check": "biome check",
+    "biome:fix": "pnpm biome:check --write",
+    "biome:ci": "biome ci",
+    "turbo": "pnpm dlx turbo@2.0.9",
+    "turbo:check": "pnpm turbo biome:check type:check",
+    "type:check": "tsc",
+    "up-interactive": "pnpm up -i",
+    "up-latest": "pnpm up-interactive -L",
+    "release": "cross-env HUSKY=0 commit-and-tag-version",
+    "push-release": "git push --follow-tags origin main"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.59.20",
@@ -41,7 +50,7 @@
     "vite-plugin-checker": "^0.8.0",
     "vite-plugin-pwa": "^0.20.5",
     "vite-tsconfig-paths": "^5.0.1"
-  }, 
+  },
   "engines": {
     "node": ">=20.14.x",
     "pnpm": ">=9"

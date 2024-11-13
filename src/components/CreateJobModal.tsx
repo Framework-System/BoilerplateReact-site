@@ -1,7 +1,7 @@
+import type { Job } from '@/types';
+import { ArrowLeft } from 'lucide-react';
 import type React from 'react';
 import { useState } from 'react';
-import { ArrowLeft } from 'lucide-react';
-import type { Job } from '@/types';
 
 interface CreateJobModalProps {
   isOpen: boolean;
@@ -17,14 +17,14 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
   const [activeTab, setActiveTab] = useState('info');
   const [formData, setFormData] = useState({
     id: 0,
-    title: "",
-    department: "",
-    location: "",
-    type: "",
-    level: "",
-    company: "",
-    status: "",
-    postedDate: "",
+    title: '',
+    department: '',
+    location: '',
+    type: '',
+    level: '',
+    company: '',
+    status: '',
+    postedDate: '',
     skills: [] as Array<string>,
     candidates: 0,
   });
@@ -39,9 +39,11 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
     onClose();
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLSelectElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
@@ -69,20 +71,22 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
             <nav className="flex space-x-8">
               <button
                 type="button"
-                className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === 'info'
-                  ? 'border-[#432B4F] text-[#432B4F]'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                  }`}
+                className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                  activeTab === 'info'
+                    ? 'border-[#432B4F] text-[#432B4F]'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                }`}
                 onClick={() => setActiveTab('info')}
               >
                 Informações da vaga
               </button>
               <button
                 type="button"
-                className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === 'skills'
-                  ? 'border-[#432B4F] text-[#432B4F]'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                  }`}
+                className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                  activeTab === 'skills'
+                    ? 'border-[#432B4F] text-[#432B4F]'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                }`}
                 onClick={() => setActiveTab('skills')}
               >
                 Competências
@@ -96,7 +100,10 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
           {activeTab === 'info' && (
             <div className="grid grid-cols-2 gap-6">
               <div>
-                <label htmlFor="departamento_id" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="departamento_id"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   Departamento
                 </label>
                 <select
@@ -114,7 +121,10 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
               </div>
 
               <div>
-                <label htmlFor="vaga_id" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="vaga_id"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   Vaga
                 </label>
                 <select
@@ -132,7 +142,10 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
               </div>
 
               <div>
-                <label htmlFor="senioridade_id" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="senioridade_id"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   Senioridade
                 </label>
                 <select
@@ -150,7 +163,10 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
               </div>
 
               <div>
-                <label htmlFor="location_id" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="location_id"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   Localização
                 </label>
                 <select
@@ -168,7 +184,10 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
               </div>
 
               <div>
-                <label htmlFor="regime_id" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="regime_id"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   Regime do Contrato
                 </label>
                 <select
@@ -185,7 +204,10 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
               </div>
 
               <div>
-                <label htmlFor="modelo_trabalho_id" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="modelo_trabalho_id"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   Modelo de trabalho
                 </label>
                 <select
@@ -207,7 +229,9 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({
           {activeTab === 'skills' && (
             <div className="space-y-6">
               {/* Add skills section here */}
-              <p className="text-gray-500">Competências section to be implemented</p>
+              <p className="text-gray-500">
+                Competências section to be implemented
+              </p>
             </div>
           )}
 

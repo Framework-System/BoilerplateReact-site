@@ -1,6 +1,6 @@
-import type React from 'react';
-import { X } from 'lucide-react';
 import type { Job } from '@/types';
+import { X } from 'lucide-react';
+import type React from 'react';
 
 interface FiltersModalProps {
   isOpen: boolean;
@@ -17,7 +17,7 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
 }) => {
   if (!isOpen) {
     return null;
-  };
+  }
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-start justify-end">
@@ -36,21 +36,39 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
         <div className="p-4 space-y-6">
           {/* Status */}
           <div>
-            <label htmlFor="status_id" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="status_id"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               Status
             </label>
             <div className="flex space-x-2">
               <div className="flex items-center space-x-4">
                 <label className="flex items-center">
-                  <input type="radio" name="status" value="todos" className="form-radio text-purple-600" />
+                  <input
+                    type="radio"
+                    name="status"
+                    value="todos"
+                    className="form-radio text-purple-600"
+                  />
                   <span className="ml-2">Todos</span>
                 </label>
                 <label className="flex items-center">
-                  <input type="radio" name="status" value="ativo" className="form-radio text-purple-600" />
+                  <input
+                    type="radio"
+                    name="status"
+                    value="ativo"
+                    className="form-radio text-purple-600"
+                  />
                   <span className="ml-2">Ativo</span>
                 </label>
                 <label className="flex items-center">
-                  <input type="radio" name="status" value="inativo" className="form-radio text-purple-600" />
+                  <input
+                    type="radio"
+                    name="status"
+                    value="inativo"
+                    className="form-radio text-purple-600"
+                  />
                   <span className="ml-2">Inativo</span>
                 </label>
               </div>
@@ -59,10 +77,16 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
 
           {/* Empresa */}
           <div>
-            <label htmlFor="empresa_id" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="empresa_id"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               Empresa
             </label>
-            <select id="empresa_id" className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+            <select
+              id="empresa_id"
+              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+            >
               <option value="">Selecione</option>
               <option value="localiza">Localiza</option>
             </select>
@@ -70,21 +94,31 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
 
           {/* Data */}
           <div>
-            <label htmlFor="data_id" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="data_id"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               Data
             </label>
             <input
-              type="date" id="data_id"
+              type="date"
+              id="data_id"
               className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>
 
           {/* Departamento */}
           <div>
-            <label htmlFor="departamento_id" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="departamento_id"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               Departamento
             </label>
-            <select id="departamento_id" className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+            <select
+              id="departamento_id"
+              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+            >
               <option value="">Selecione</option>
               <option value="desenvolvimento">Desenvolvimento</option>
             </select>
@@ -92,10 +126,16 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
 
           {/* Vaga */}
           <div>
-            <label htmlFor="vaga_id" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="vaga_id"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               Vaga
             </label>
-            <select id="vaga_id" className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+            <select
+              id="vaga_id"
+              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+            >
               <option value="">Selecione</option>
               <option value="backend">Desenvolvedor Backend</option>
             </select>
@@ -103,10 +143,16 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
 
           {/* Senioridade */}
           <div>
-            <label htmlFor="senioridade_id" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="senioridade_id"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               Senioridade
             </label>
-            <select id="senioridade_id" className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+            <select
+              id="senioridade_id"
+              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+            >
               <option value="">Selecione</option>
               <option value="junior">Júnior</option>
               <option value="pleno">Pleno</option>
@@ -116,10 +162,16 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
 
           {/* Localização */}
           <div>
-            <label htmlFor="localizacao_id" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="localizacao_id"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               Localização
             </label>
-            <select id="localizacao_id" className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+            <select
+              id="localizacao_id"
+              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+            >
               <option value="">Selecione</option>
               <option value="Belo Horizonte - MG">Belo Horizonte - MG</option>
               <option value="São Paulo - SP">São Paulo - SP</option>
@@ -128,10 +180,16 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
 
           {/* Regime de Contrato */}
           <div>
-            <label htmlFor="regime_id" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="regime_id"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               Regime de Contrato
             </label>
-            <select id="regime_id" className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+            <select
+              id="regime_id"
+              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+            >
               <option value="">Selecione</option>
               <option value="clt">CLT</option>
               <option value="pj">PJ</option>
@@ -141,10 +199,16 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
 
           {/* Modelo de trabalho */}
           <div>
-            <label htmlFor="modelo_trabalho_id" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="modelo_trabalho_id"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               Modelo de trabalho
             </label>
-            <select id="modelo_trabalho_id" className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+            <select
+              id="modelo_trabalho_id"
+              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+            >
               <option value="">Selecione</option>
               <option value="presencial">Presencial</option>
               <option value="hibrido">Híbrido</option>
@@ -175,7 +239,7 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
                 status: '',
                 postedDate: '',
                 skills: [],
-                candidates: 0
+                candidates: 0,
               });
               onClose();
             }}

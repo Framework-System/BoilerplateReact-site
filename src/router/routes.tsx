@@ -1,7 +1,7 @@
-import type { PathRouteProps } from 'react-router-dom';
 import { Home } from '@/pages/Home';
-import { JobVacancyManage } from '@/pages/JobVacancyManage';
 import { Interviews } from '@/pages/Interviews';
+import { JobVacancyManage } from '@/pages/JobVacancyManage';
+import type { PathRouteProps } from 'react-router-dom';
 
 export const routes: Array<PathRouteProps> = [
   {

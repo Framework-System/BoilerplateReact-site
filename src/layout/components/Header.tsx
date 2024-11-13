@@ -10,7 +10,10 @@ const Header = () => {
             <h1 className="text-2xl font-semibold">Gestão de vagas</h1>
           </div>
           <div className="flex items-center space-x-4 px-6">
-            <button type="button" className="p-2 hover:bg-[#533961] rounded-full">
+            <button
+              type="button"
+              className="p-2 hover:bg-[#533961] rounded-full"
+            >
               <Bell className="w-5 h-5" />
             </button>
             <div className="flex items-center space-x-2">

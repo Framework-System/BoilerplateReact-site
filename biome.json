@@ -50,7 +50,12 @@
         "useFilenamingConvention": {
           "level": "error",
           "options": {
-            "filenameCases": ["PascalCase", "kebab-case", "snake_case", "camelCase"]
+            "filenameCases": [
+              "PascalCase",
+              "kebab-case",
+              "snake_case",
+              "camelCase"
+            ]
           }
         }
       },

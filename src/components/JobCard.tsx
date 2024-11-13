@@ -1,6 +1,6 @@
-import type React from 'react';
 import type { Job } from '@/types';
-import { MapPin, Briefcase, Clock, Users, MoreVertical } from 'lucide-react';
+import { Briefcase, Clock, MapPin, MoreVertical, Users } from 'lucide-react';
+import type React from 'react';
 
 interface JobCardProps {
   job: Job;
@@ -15,8 +15,13 @@ const JobCard: React.FC<JobCardProps> = ({ job }) => {
           <p className="text-sm text-gray-600">{job.department}</p>
         </div>
         <div className="flex items-center space-x-2">
-          <span className={`px-2 py-1 rounded-full text-xs ${job.status === 'Ativo' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
-            }`}>
+          <span
+            className={`px-2 py-1 rounded-full text-xs ${
+              job.status === 'Ativo'
+                ? 'bg-green-100 text-green-800'
+                : 'bg-gray-100 text-gray-800'
+            }`}
+          >
             {job.status}
           </span>
           <button type="button" className="p-1 hover:bg-gray-100 rounded-full">

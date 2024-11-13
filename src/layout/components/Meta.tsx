@@ -15,6 +15,6 @@ export const Meta = () => {
       <meta name="theme-color" content="#FFFFFF" />
 
       <link rel="shortcut icon" href="/assets/favicon.svg" />
-      </>
+    </>
   );
 };

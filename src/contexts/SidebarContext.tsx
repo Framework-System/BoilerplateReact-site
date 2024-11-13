@@ -15,11 +15,13 @@ export const SidebarProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [currentPath, setCurrentPath] = useState('/');
 
   const toggleSidebar = () => {
-    setIsExpanded(prev => !prev);
+    setIsExpanded((prev) => !prev);
   };
 
   return (
-    <SidebarContext.Provider value={{ isExpanded, toggleSidebar, currentPath, setCurrentPath }}>
+    <SidebarContext.Provider
+      value={{ isExpanded, toggleSidebar, currentPath, setCurrentPath }}
+    >
       {children}
     </SidebarContext.Provider>
   );
