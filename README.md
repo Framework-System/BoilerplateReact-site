@@ -77,8 +77,8 @@ src/
 
 1. Clone o repositório:
 ```sh
-git clone https://github.com/seu-usuario/example-site.git
-cd example-site
+git clone https://github.com/Framework-System/BoilerplateReact-site
+cd BoilerplateReact-site
 ```
 
 2. Instale as dependências:
