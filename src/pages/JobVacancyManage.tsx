@@ -1,8 +1,8 @@
-import { CreateJobModal } from '@/components/CreateJobModal';
+import { CreateJobModal } from '@/components/jobs/CreateJobModal';
 import { FiltersModal } from '@/components/FiltersModal';
-import { JobCard } from '@/components/JobCard';
-import { useCreateJob } from '@/hooks/job/useCreateJob';
-import { useJobs } from '@/hooks/job/useJobs';
+import { JobCard } from '@/components/jobs/JobCard';
+import { useCreateJob } from '@/hooks/jobs/useCreateJob';
+import { useJobs } from '@/hooks/jobs/useJobs';
 import { log } from '@/logger';
 import type { Job } from '@/types';
 import { Filter, Plus, Search } from 'lucide-react';

@@ -23,11 +23,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = useCallback(async (email: string, password: string) => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 100));
-      if (email === 'rafaelgontijo@frwk.com.br' && password === 'frwk@1234') {
+      if (email === '123@frwk.com.br' && password === '123') {
         const user = {
           id: '1',
-          name: 'Rafael Gontijo',
-          email: 'rafaelgontijo@frwk.com.br',
+          name: 'One Two Three',
+          email: '123@frwk.com.br',
           role: 'admin',
         };
         setUser(user);
