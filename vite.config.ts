@@ -12,8 +12,8 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 const pwaOptions: Partial<VitePWAOptions> = {
   registerType: 'autoUpdate',
   manifest: {
-    short_name: 'match-mind-site',
-    name: 'Match Mind Site',
+    short_name: 'example-site',
+    name: 'Example Site Site',
     lang: 'pt-br',
     start_url: '/',
     background_color: '#FFFFFF',

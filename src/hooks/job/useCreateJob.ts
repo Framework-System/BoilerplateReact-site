@@ -1,10 +1,9 @@
-import { baseUrl } from '@/config';
+import { httpService } from '@/services/httpService';
 import type { Job } from '@/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
 
 const createJob = async (jobData: Partial<Job>): Promise<Job> => {
-  const { data } = await axios.post(`${baseUrl}/jobs`, jobData);
+  const { data } = await httpService.post<Job>('/jobs', jobData);
   return data;
 };
 
