@@ -92,7 +92,7 @@ pnpm install
 pnpm dev
 ```
 
-5. Acesse a documentação da API em http://localhost:3000.
+5. Acesse o site em: http://localhost:3000.
 
 ## Contribuição
 
