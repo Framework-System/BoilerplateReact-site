@@ -2,26 +2,42 @@ import type { FC, ReactNode } from 'react';
 import { createContext, memo, useContext, useState } from 'react';
 
 interface SidebarContextType {
+  isVisible: boolean;
   isExpanded: boolean;
   toggleSidebar: () => void;
+  toggleSidebarSize: () => void;
   currentPath: string;
   setCurrentPath: (path: string) => void;
+  setIsVisible: (isVisible: boolean) => void;
 }
 
 const SidebarContext = createContext<SidebarContextType | undefined>(undefined);
 
 export const SidebarProvider: FC<{ children: ReactNode }> = memo(
   ({ children }) => {
-    const [isExpanded, setIsExpanded] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
+    const [isExpanded, setIsExpanded] = useState(true);
     const [currentPath, setCurrentPath] = useState('/');
 
     const toggleSidebar = () => {
+      setIsVisible((prev) => !prev);
+    };
+
+    const toggleSidebarSize = () => {
       setIsExpanded((prev) => !prev);
     };
 
     return (
       <SidebarContext.Provider
-        value={{ isExpanded, toggleSidebar, currentPath, setCurrentPath }}
+        value={{
+          isVisible,
+          isExpanded,
+          toggleSidebar,
+          toggleSidebarSize,
+          currentPath,
+          setCurrentPath,
+          setIsVisible,
+        }}
       >
         {children}
       </SidebarContext.Provider>

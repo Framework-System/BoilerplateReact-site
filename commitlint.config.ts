@@ -7,4 +7,4 @@ const commitlintConfiguration: UserConfig = {
   },
 };
 
-export default commitlintConfiguration;
+export { commitlintConfiguration };

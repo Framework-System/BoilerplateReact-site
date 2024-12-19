@@ -37,15 +37,15 @@ export function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
+    <div>
+      <div>
         <img
           src="/assets/logo-roxo.png"
           alt="Logo"
           className="mx-auto h-32 w-auto"
         />
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Entre na sua conta
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-500 flex items-center justify-center">
+          Talent
         </h2>
       </div>
 

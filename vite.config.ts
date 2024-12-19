@@ -12,8 +12,8 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 const pwaOptions: Partial<VitePWAOptions> = {
   registerType: 'autoUpdate',
   manifest: {
-    short_name: 'example-site',
-    name: 'Example Site Site',
+    short_name: 'talent-site',
+    name: 'Talent Site',
     lang: 'pt-br',
     start_url: '/',
     background_color: '#FFFFFF',
@@ -31,7 +31,6 @@ const pwaOptions: Partial<VitePWAOptions> = {
   },
 };
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     MillionLint.vite({

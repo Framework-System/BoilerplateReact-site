@@ -1,14 +1,12 @@
+import { Page404 } from '@/pages/404';
 import { Suspense, memo } from 'react';
 import { Route, Routes } from 'react-router-dom';
-
-import { Page404 } from '@/pages/404';
-
 import { RequireAuth } from './require-auth';
 import { privateRoutes, routes } from './routes';
 
 export const Routings = memo(() => {
   return (
-    <Suspense>
+    <Suspense fallback={<div>Carregando...</div>}>
       <Routes>
         {routes.map((routeProps) => (
           <Route {...routeProps} key={routeProps.path as string} />

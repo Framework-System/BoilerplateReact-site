@@ -1,10 +1,10 @@
-const APP_NAME = 'Example Site';
+const APP_NAME = 'Talent Site';
 
 export const Meta = () => {
   return (
     <>
-      <title>example</title>
-      <meta name="description" content="Example Site" />
+      <title>Talent</title>
+      <meta name="description" content="Talent Site" />
 
       <meta name="application-name" content={APP_NAME} />
       <meta name="apple-mobile-web-app-capable" content="yes" />

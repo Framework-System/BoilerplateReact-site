@@ -6,9 +6,9 @@ on:
 
 env:
   AWS_REGION: us-east-1
-  AWS_S3_BUCKET: example-site-production
+  AWS_S3_BUCKET: talent-site-production
   CLOUDFRONT_DISTRIBUTION_ID: E28KIJPXN1AXK3
-  VITE_API_URL: https://example-api.ai.frwkapp.com.br
+  VITE_API_URL: http://localhost:3000
 
 jobs:
   build:

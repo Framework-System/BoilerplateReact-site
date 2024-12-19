@@ -17,6 +17,21 @@ const JobVacancyManage = lazy(() =>
 const Login = lazy(() =>
   import('@/pages/Login').then((module) => ({ default: module.Login })),
 );
+const CandidatesManage = lazy(() =>
+  import('@/pages/CandidatesManage').then((module) => ({
+    default: module.CandidatesManage,
+  })),
+);
+const CreateJobVacancyManage = lazy(() =>
+  import('@/pages/CreateJobVacancyManage').then((module) => ({
+    default: module.CreateJobVacancyManage,
+  })),
+);
+const CandidatesDetails = lazy(() =>
+  import('@/pages/CandidatesDetails').then((module) => ({
+    default: module.CandidatesDetails,
+  })),
+);
 
 export const routes: Array<PathRouteProps> = [
   {
@@ -24,6 +39,14 @@ export const routes: Array<PathRouteProps> = [
     element: (
       <Suspense fallback={<div>Carregando...</div>}>
         <Login />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/createJobVacancy/:id?',
+    element: (
+      <Suspense fallback={<div>Carregando...</div>}>
+        <CreateJobVacancyManage />
       </Suspense>
     ),
   },
@@ -51,6 +74,22 @@ export const privateRoutes: Array<PathRouteProps> = [
     element: (
       <Suspense fallback={<div>Carregando...</div>}>
         <Interviews />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/candidates/:id',
+    element: (
+      <Suspense fallback={<div>Carregando...</div>}>
+        <CandidatesManage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/candidatesdetails/:id',
+    element: (
+      <Suspense fallback={<div>Carregando...</div>}>
+        <CandidatesDetails />
       </Suspense>
     ),
   },

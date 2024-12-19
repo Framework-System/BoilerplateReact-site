@@ -10,10 +10,10 @@ export const RequireAuth = ({
   children,
   redirectTo = '/login',
 }: PrivateRouteProps) => {
-  const { isAuthenticated } = useAuth();
+  const { checkTokenExpiration } = useAuth();
   const location = useLocation();
 
-  if (!isAuthenticated) {
+  if (!checkTokenExpiration) {
     return <Navigate to={redirectTo} state={{ from: location }} replace />;
   }
 

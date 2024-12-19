@@ -1,5 +1,5 @@
 {
-  "name": "example_site",
+  "name": "talent_site",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -19,11 +19,15 @@
     "push-release": "git push --follow-tags origin main"
   },
   "dependencies": {
-    "@million/lint": "^1.0.12",
+    "@headlessui/react": "^2.2.0",
+    "@million/lint": "^1.0.13",
+    "@react-spring/web": "^9.7.5",
     "@tanstack/react-query": "^5.59.20",
     "axios": "^1.7.7",
+    "date-fns": "^4.1.0",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
+    "react-collapse": "^5.1.1",
     "react-dom": "^18.3.1",
     "react-helmet-async": "^2.0.5",
     "react-hook-form": "^7.53.2",

@@ -17,7 +17,13 @@ interface MenuItem {
 }
 
 export const Sidebar = () => {
-  const { isExpanded, toggleSidebar, currentPath } = useSidebar();
+  const {
+    isVisible,
+    isExpanded,
+    toggleSidebarSize,
+    toggleSidebar,
+    currentPath,
+  } = useSidebar();
 
   const menuItems: Array<MenuItem> = [
     {
@@ -42,9 +48,9 @@ export const Sidebar = () => {
 
   return (
     <aside
-      className={`fixed left-0 top-0 h-full bg-white border-r border-gray-200 z-50 transition-all duration-300 ${
-        isExpanded ? 'w-64' : 'w-22'
-      }`}
+      className={`fixed top-16 left-0 h-[calc(100%-4rem)] bg-white border-r border-gray-200 z-50 transition-all duration-300 transform ${
+        isVisible ? 'translate-x-0' : '-translate-x-full'
+      } ${isExpanded ? 'w-64' : 'w-20'}`}
     >
       <div className="p-4">
         <nav className="mt-6">
@@ -58,6 +64,7 @@ export const Sidebar = () => {
                       ? 'bg-[#432B4F] text-white'
                       : 'text-gray-700 hover:bg-gray-100'
                   }`}
+                  onClick={toggleSidebar}
                 >
                   <div className="flex items-center">
                     {item.icon}
@@ -72,7 +79,7 @@ export const Sidebar = () => {
       <div className="absolute bottom-0 w-full p-4">
         <button
           type="button"
-          onClick={toggleSidebar}
+          onClick={toggleSidebarSize}
           className="px-4 py-3 hover:bg-gray-100 rounded-full transition-colors"
         >
           {isExpanded ? (

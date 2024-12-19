@@ -15,7 +15,7 @@ class HttpService {
     url: string,
     data?: unknown,
     config: AxiosRequestConfig = {},
-    maxRetries = 0
+    maxRetries = 0,
   ): Promise<AxiosResponse<T>> {
     let retries = 0;
     let lastError: unknown;
@@ -44,12 +44,18 @@ class HttpService {
     url: string,
     config: AxiosRequestConfig = {},
     maxRetries = 0,
-    timeout?: number
+    timeout?: number,
   ): Promise<AxiosResponse<T>> {
     if (timeout !== undefined) {
       config.timeout = timeout;
     }
-    return await this.requestWithRetry<T>('get', url, undefined, config, maxRetries);
+    return await this.requestWithRetry<T>(
+      'get',
+      url,
+      undefined,
+      config,
+      maxRetries,
+    );
   }
 
   async post<T, D = unknown>(
@@ -57,12 +63,18 @@ class HttpService {
     data: D,
     config: AxiosRequestConfig = {},
     maxRetries = 0,
-    timeout?: number
+    timeout?: number,
   ): Promise<AxiosResponse<T>> {
     if (timeout !== undefined) {
       config.timeout = timeout;
     }
-    return await this.requestWithRetry<T>('post', url, data, config, maxRetries);
+    return await this.requestWithRetry<T>(
+      'post',
+      url,
+      data,
+      config,
+      maxRetries,
+    );
   }
 
   async put<T, D = unknown>(
@@ -70,7 +82,7 @@ class HttpService {
     data: D,
     config: AxiosRequestConfig = {},
     maxRetries = 0,
-    timeout?: number
+    timeout?: number,
   ): Promise<AxiosResponse<T>> {
     if (timeout !== undefined) {
       config.timeout = timeout;
@@ -82,12 +94,18 @@ class HttpService {
     url: string,
     config: AxiosRequestConfig = {},
     maxRetries = 0,
-    timeout?: number
+    timeout?: number,
   ): Promise<AxiosResponse<T>> {
     if (timeout !== undefined) {
       config.timeout = timeout;
     }
-    return await this.requestWithRetry<T>('delete', url, undefined, config, maxRetries);
+    return await this.requestWithRetry<T>(
+      'delete',
+      url,
+      undefined,
+      config,
+      maxRetries,
+    );
   }
 }
 

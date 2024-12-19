@@ -10,24 +10,28 @@ type LayoutProps = {
   children: ReactNode;
 };
 
+const noSidebarRoutes = ['/login'];
+const noHeaderRoutes = ['/login'];
+
 export const Layout = ({ children }: LayoutProps) => {
-  const { isExpanded, setCurrentPath } = useSidebar();
+  const { setCurrentPath } = useSidebar();
   const location = useLocation();
 
   useEffect(() => {
     setCurrentPath(location.pathname);
   }, [location.pathname, setCurrentPath]);
 
+  const shouldShowSidebar = !noSidebarRoutes.includes(location.pathname);
+  const shouldShowHeader = !noHeaderRoutes.includes(location.pathname);
+
   return (
     <>
       <Meta />
-      <div
-        className={`transition-all duration-300 ${isExpanded ? 'ml-64' : 'ml-20'}`}
-      >
-        <div className="min-h-screen bg-gray-50">
-          <Header />
-          <Sidebar />
-          {children}
+      <div className="min-h-screen bg-gray-50 flex flex-col">
+        {shouldShowHeader && <Header />}
+        <div className="flex flex-1">
+          {shouldShowSidebar && <Sidebar />}
+          <div className="flex-1 p-4">{children}</div>
         </div>
       </div>
     </>
